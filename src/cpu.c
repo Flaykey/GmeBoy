@@ -47,5 +47,5 @@ BYTE* GetRegPointer(CPU *cpu, BYTE code)
 BYTE *GetRegPointer_r16(CPU *cpu, BYTE code)
 {
     
-    return nullptr;
+    return NULL;
 }

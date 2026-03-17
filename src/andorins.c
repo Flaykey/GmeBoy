@@ -40,7 +40,7 @@ void XOR_n8(CPU *cpu, BYTE val)
     SET_FLAG_CARRY(&cpu->reg, 0);
 
 }
-void XOR_r8(CPU *cpu, BYTE r){
+void XOR_r8(CPU *cpu){
     BYTE code = cpu->current_opcode & 0x7;
     XOR_n8(cpu,GetReg(cpu,code));
 }

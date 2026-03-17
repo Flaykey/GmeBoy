@@ -1,5 +1,6 @@
 #include "opcodes_table.h"
 
+void (*Instruction[0x100])(CPU* cpu);
 void Assign_ALU()
 {
     for(int i = 0; i < 8; i++)
@@ -35,10 +36,16 @@ void Assign_LD()
 
 }
 
-
 void Assign_INC_DEC(){
     for(int i = 0; i < 8; i++){
         Instruction[0x04 + 8*i] = INC_r8;
         Instruction[0x05 + 8*i] = DEC_r8;
     }
+}
+
+void Load_All_Instructions()
+{
+    Assign_ALU();
+    Assign_LD();
+    Assign_INC_DEC();
 }

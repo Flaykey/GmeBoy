@@ -37,7 +37,7 @@ void DEC(CPU *cpu, BYTE *operand)
 }
 
 void DEC_r8(CPU *cpu){
-    BYTE *code = GetRegPointer(cpu,cpu->current_opcode>>3) & 0x7 ;
+    BYTE *code = GetRegPointer(cpu,cpu->current_opcode>>3  & 0x7 ) ;
     DEC(cpu, code);
 }
 void DEC_MEM(CPU *cpu){DEC(cpu, &cpu->memory[GET_HL(&cpu->reg)]);}

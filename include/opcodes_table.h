@@ -11,3 +11,5 @@ extern void (*Instruction[0x100])(CPU *cpu);
 
 void Assign_ALU();
 void Assign_LD();
+void Assign_INC_DEC();
+void Load_All_Instructions();

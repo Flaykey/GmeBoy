@@ -1,88 +1,73 @@
 #include<cpu.h>
 #include<ppu.h>
 #include<stdio.h>
-
+#include<string.h>
+#include"opcodes_table.h"
 int main(){
-    CPU cpu;
-    PPU ppu;
-void INC_SP(CPU* cpu);
-        BYTE rom[] = {
-    0x21, 0x00, 0x80,   // LD HL,0x8000
-    0x36, 0xAA, 0x36, 0xAA,  // Row 1
-    0x36, 0x55, 0x36, 0x55,  // Row 2
-    0x36, 0xAA, 0x36, 0xAA,  // Row 1
-    0x36, 0x55, 0x36, 0x55,  // Row 4
-    0x36, 0xAA, 0x36, 0xAA,  // Row 1
-    0x36, 0x55, 0x36, 0x55,  // Row 6
-    0x36, 0xAA, 0x36, 0xAA,  // Row 1
-    0x36, 0x55, 0x36, 0x55,  // Row 8
-    0x76                     // HALT
-};
-   cpu.reg.IP = 0x0000;
-   void (*instruction[512])(CPU* cpu);
-    for(int i = 0; i<=sizeof(rom) / sizeof(rom[0]); i++){
-        if(cpu.state == HALTED) break;
-        // printf("Current instruction : %x \n" , rom[cpu.reg.IP]);
-        switch(rom[cpu.reg.IP]){
-                case 0x21:
-                        cpu.reg.IP++;
-                        BYTE low = rom[cpu.reg.IP];
-                        cpu.reg.IP++;
-                        BYTE high = rom[cpu.reg.IP];
-                        LD_r16_n16(&cpu,&cpu.reg.h,&cpu.reg.l,high,low);
-                        break;
-                case 0x36:
-                        cpu.reg.IP++;
-                        LD_MEM_n8(&cpu,rom[cpu.reg.IP]);
-                        break;
-                case 0x3E:
-                        cpu.reg.IP++;
-                        LD_A_r8(&cpu,rom[cpu.reg.IP]);
-                        break;
-                case 0x23:
-                        INC_HL(&cpu);
-                        break;
-                case 0x06:
-                        cpu.reg.IP++;
-                        LD_r8_n8(&cpu,&cpu.reg.b,rom[cpu.reg.IP]);
-                        break;
-                case 0x80:	
-                        ADD_A_r8(&cpu, cpu.reg.b);
-                        break;
-                case 0x0E: 
-                        cpu.reg.IP++;
-                        LD_r8_n8(&cpu,&cpu.reg.c,rom[cpu.reg.IP]);
-                        break;
-                case 0x81:	
-                        ADD_A_r8(&cpu, cpu.reg.c);
-                        break;
-                case 0x32:	
-                        WORD hl = GET_HL(&cpu.reg);
-                        cpu.memory[hl] = cpu.reg.a;
-                        hl--;
-                        SET_HL(&cpu.reg,hl);
-                        break;
-                case 0xAF:	
-                    XOR_r8(&cpu, cpu.reg.a);
-                    break;
-                case 0x90:	
-                        SUB_A_r8(&cpu,cpu.reg.b);
-                        break;
-                case 0x76:
-                        HALT(&cpu);
-        }
-        // printf("HL: %04X, Memory: %02X\n", GET_HL(&cpu.reg), cpu.memory[GET_HL(&cpu.reg) - 1]);
-        cpu.reg.IP++;
-    }
-    InitWindow(SCREEN_WIDTH*SCALEX, SCREEN_HEIGHT*SCALEY,"GAMEBOY");
-    SetTargetFPS(60);
+        CPU cpu;
+        PPU ppu;
+        void INC_SP(CPU* cpu);
+        BYTE rom[30] = {
+    // LD r8,r8
+    0x40,             // LD B,B (just moves itself, safe)
+    0x41,             // LD B,C
+    0x42,             // LD B,D
+    0x43,             // LD B,E
+    0x44,             // LD B,H
+    0x45,             // LD B,L
+    0x47,             // LD B,A
+    0x78,             // LD A,B
+    0x79,             // LD A,C
+    0x7C,             // LD A,H
 
-    VramToFrameBuffer(&ppu,&cpu,0x8000);
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-        DisplayFrameBuffer(&ppu);
-        EndDrawing();
-    }
+    // ADD A,r8
+    0x80,             // ADD A,B
+    0x81,             // ADD A,C
+    0x82,             // ADD A,D
+    0x83,             // ADD A,E
+    0x84,             // ADD A,H
+    0x85,             // ADD A,L
+    0x87,             // ADD A,A
+
+    // ADC A,r8
+    0x88,             // ADC A,B
+    0x89,             // ADC A,C
+    0x8F,             // ADC A,A
+
+    // SUB A,r8
+    0x90,             // SUB A,B
+    0x91,             // SUB A,C
+    0x97,             // SUB A,A
+
+    // SBC A,r8
+    0x98,             // SBC A,B
+    0x99,             // SBC A,C
+    0x9F,             // SBC A,A
+
+    // AND A,r8
+    0xA0,             // AND B
+    0xA1,             // AND C
+    0xA7,             // AND A
+    0x76
+};      
+        Load_All_Instructions();
+        //load rom into ram todo:
+        memcpy(&cpu.memory[0x0000], rom, sizeof(rom));
+        cpu.reg.IP = 0x0000;
+        VramToFrameBuffer(&ppu,&cpu,0x8000);
+        InitWindow(100,100,"HELLO");
+        while (!WindowShouldClose())
+        {
+                while(cpu.state != HALTED){
+                BYTE opcode = cpu.memory[cpu.reg.IP++];
+                cpu.current_opcode = opcode;
+                printf("%x \n", cpu.current_opcode);
+                Instruction[opcode](&cpu);
+                if(cpu.state == HALTED) printf("cpu has halted!!!!\n");
+                }
+                BeginDrawing();
+                DisplayFrameBuffer(&ppu);
+                EndDrawing();
+        }   
     
 }
