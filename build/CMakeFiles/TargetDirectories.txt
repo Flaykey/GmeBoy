@@ -1,3 +1,0 @@
-C:/Users/Samrat/OneDrive/Documents/c++/GameBoy/build/CMakeFiles/GAMEBOY.dir
-C:/Users/Samrat/OneDrive/Documents/c++/GameBoy/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Samrat/OneDrive/Documents/c++/GameBoy/build/CMakeFiles/ZERO_CHECK.dir
