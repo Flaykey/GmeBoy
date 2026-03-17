@@ -1,0 +1,22 @@
+# Ignore CMake build folder
+/build/
+
+# Ignore executables
+*.exe
+*.out
+*.app
+*.o
+
+# Ignore Visual Studio files (Windows)
+*.vcxproj*
+*.sln
+*.user
+*.pdb
+
+# Ignore temporary files
+*.swp
+*.log
+*.DS_Store
+
+# Ignore Linux binaries
+GAMEBOY

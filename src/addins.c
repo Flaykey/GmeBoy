@@ -12,8 +12,15 @@ void ADC_A(CPU *cpu, BYTE operand)
     cpu->reg.a = sum & 0xFF;
 }
 
-void ADC_A_r8(CPU *cpu, BYTE r)     { ADC_A(cpu, r); }
-void ADC_A_n8(CPU *cpu, BYTE val)   { ADC_A(cpu, val); }
+void ADC_A_r8(CPU *cpu){ 
+
+    BYTE code = cpu->current_opcode & 0x7;
+    ADC_A(cpu, GetReg(cpu,code)); 
+}
+void ADC_A_n8(CPU *cpu){
+    BYTE val = cpu->memory[cpu->reg.IP++];
+    ADC_A(cpu, val); 
+}
 void ADC_A_MEM(CPU *cpu) { ADC_A(cpu, cpu->memory[GET_HL(&cpu->reg)]); }
 
 void ADD_A(CPU *cpu, BYTE operand)
@@ -29,6 +36,12 @@ void ADD_A(CPU *cpu, BYTE operand)
     cpu->reg.a = sum & 0xFF;
 }
 
-void ADD_A_r8(CPU *cpu, BYTE r)     { ADD_A(cpu, r); }
-void ADD_A_n8(CPU *cpu, BYTE val)   { ADD_A(cpu, val); }
-void ADD_A_MEM(CPU *cpu) { ADD_A(cpu, cpu->memory[GET_HL(&cpu->reg)]); }
+void ADD_A_r8(CPU *cpu){
+    BYTE code = cpu->current_opcode & 0x7;
+    ADD_A(cpu, GetReg(cpu,code)); 
+}
+void ADD_A_n8(CPU *cpu){ 
+    BYTE val = cpu->memory[cpu->reg.IP++];
+    ADD_A(cpu, val); 
+}
+void ADD_A_MEM(CPU *cpu){ ADD_A(cpu, cpu->memory[GET_HL(&cpu->reg)]); }

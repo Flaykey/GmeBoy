@@ -1,3 +1,4 @@
+#pragma once
 #include "cpu.h"
 
 void CALL_n16(CPU* cpu, WORD address);

@@ -19,7 +19,7 @@ void INC_SP(CPU* cpu);
     0x76                     // HALT
 };
    cpu.reg.IP = 0x0000;
-   void (*instruction[512])(CPU* cpuu);
+   void (*instruction[512])(CPU* cpu);
     for(int i = 0; i<=sizeof(rom) / sizeof(rom[0]); i++){
         if(cpu.state == HALTED) break;
         // printf("Current instruction : %x \n" , rom[cpu.reg.IP]);

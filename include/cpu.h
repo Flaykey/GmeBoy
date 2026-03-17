@@ -24,6 +24,7 @@ typedef struct{
     BYTE memory[0xFFFF];
     CPU_STATES state;
     int IME;
+    BYTE current_opcode;
     
 }CPU;
 
@@ -49,3 +50,7 @@ typedef struct{
 #define GET_FLAG_CARRY(reg)       (((reg)->f >> 4) & 1)
 
 int CHECK_cc(CPU* cpu, CONTITION_CODES cc);
+BYTE GetReg(CPU* cpu, BYTE code);
+BYTE *GetRegPointer(CPU* cpu, BYTE code);
+
+BYTE *GetRegPointer_r16(CPU* cpu, BYTE code);
