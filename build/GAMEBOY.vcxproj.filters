@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\addins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\andorins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\contolins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\cpins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\cpu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\incredecreins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\ldins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\ppu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\subins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\src\subroutineins.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Samrat\OneDrive\Documents\c++\GameBoy\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B99DD910-7EC6-3168-A7E1-55F2118862F0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

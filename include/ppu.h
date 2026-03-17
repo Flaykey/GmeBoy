@@ -4,6 +4,8 @@
 #include"raylib.h"
 #define SCREEN_WIDTH 144
 #define SCREEN_HEIGHT 160
+#define SCALEX 16
+#define SCALEY 9
 
 typedef enum{
     GWHITE,
